@@ -1,5 +1,5 @@
 // js/api.js - 全局 API 请求封装
-const API_BASE = '/api';
+const API_BASE = API_CONFIG ? API_CONFIG.apiBase : '/api';
 
 async function api(url, options = {}) {
   const headers = { 'Content-Type': 'application/json' };

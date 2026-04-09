@@ -7,7 +7,7 @@
   'use strict';
 
   const CONFIG = {
-    apiBase: '/api'
+    apiBase: API_CONFIG.apiBase
   };
 
   let state = {

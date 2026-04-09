@@ -9,8 +9,16 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// 中间件
-app.use(cors());
+// 中间件 - CORS 配置（允许多个域名）
+app.use(cors({
+  origin: [
+    'https://myblog-qcy9.onrender.com',
+    /\.vercel\.app$/,  // 允许所有 Vercel 子域名
+    'http://localhost:3000'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 

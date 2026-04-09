@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: blog
+    env: node
+    region: oregon
+    buildCommand: npm install
+    startCommand: node backend/app.js
+    staticPublishPath: .
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate

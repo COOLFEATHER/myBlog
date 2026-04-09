@@ -7,7 +7,7 @@
 
   const CONFIG = {
     pageSize: 6,
-    apiBase: '/api'
+    apiBase: API_CONFIG.apiBase
   };
 
   let state = {

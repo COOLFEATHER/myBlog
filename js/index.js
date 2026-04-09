@@ -8,7 +8,7 @@
   // ==================== 配置 ====================
   const CONFIG = {
     pageSize: 6,
-    apiBase: '/api'
+    apiBase: API_CONFIG.apiBase
   };
 
   // ==================== 状态 ====================
