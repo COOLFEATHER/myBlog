@@ -1,0 +1,54 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "前端开发",
+      "slug": "frontend",
+      "parentId": 3,
+      "articleCount": 5,
+      "description": "",
+      "color": "#165dff",
+      "icon": "ri-folder-line"
+    },
+    {
+      "id": 2,
+      "name": "后端开发",
+      "slug": "backend",
+      "parentId": 3,
+      "articleCount": 1,
+      "description": "",
+      "color": "#40c4ff",
+      "icon": "ri-folder-line"
+    },
+    {
+      "id": 4,
+      "name": "数据分析",
+      "slug": "data",
+      "parentId": 3,
+      "articleCount": 1,
+      "description": "",
+      "color": "#00b42a",
+      "icon": "ri-folder-line"
+    },
+    {
+      "id": 5,
+      "name": "开发工具",
+      "slug": "tools",
+      "parentId": 3,
+      "articleCount": 2,
+      "description": "",
+      "color": "#ff7d00",
+      "icon": "ri-folder-line"
+    },
+    {
+      "id": 3,
+      "name": "开发知识",
+      "slug": "开发知识",
+      "parentId": 0,
+      "articleCount": 0,
+      "icon": "ri-folder-line",
+      "description": "",
+      "color": "#165dff"
+    }
+  ]
+}

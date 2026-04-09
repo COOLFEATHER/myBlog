@@ -1,0 +1,14 @@
+{
+  "tags": [
+    { "id": 1, "name": "JavaScript", "slug": "javascript", "color": "#F7DF1E" },
+    { "id": 2, "name": "TypeScript", "slug": "typescript", "color": "#3178C6" },
+    { "id": 3, "name": "Vue", "slug": "vue", "color": "#42B883" },
+    { "id": 4, "name": "React", "slug": "react", "color": "#61DAFB" },
+    { "id": 5, "name": "Node.js", "slug": "nodejs", "color": "#339933" },
+    { "id": 6, "name": "Python", "slug": "python", "color": "#3776AB" },
+    { "id": 7, "name": "CSS", "slug": "css", "color": "#1572B6" },
+    { "id": 8, "name": "Git", "slug": "git", "color": "#F05032" },
+    { "id": 9, "name": "Docker", "slug": "docker", "color": "#2496ED" },
+    { "id": 10, "name": "Linux", "slug": "linux", "color": "#FCC624" }
+  ]
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OVERRAIN - 关于我">
+  <title>关于我 - OVERRAIN</title>
+  
+  <!-- 样式 -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.min.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">OVERRAIN</a>
+      
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">首页</a>
+        <a href="category.html">分类</a>
+        <a href="about.html" class="active">关于</a>
+      </div>
+      
+      <div class="nav-right">
+        <button class="theme-toggle" title="切换主题">🌙</button>
+        <button class="nav-toggle" id="navToggle">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 页面内容 -->
+  <main class="about-page">
+    <!-- 个人介绍 -->
+    <section class="about-intro">
+      <div class="about-avatar" id="aboutAvatar">🌙</div>
+      <h1 class="about-name" id="aboutName">OVERRAIN</h1>
+      <p class="about-role" id="aboutRole">自救小透明</p>
+      <p class="about-bio" id="aboutBio">亦欲以究天人之际，通今古之变，成一家之言</p>
+    </section>
+
+    <!-- 技能栈 -->
+    <section class="about-section">
+      <h2 class="about-section-title">技能栈</h2>
+      <div class="skills-grid" id="skillsGrid">
+        <!-- 技能标签将通过 JS 动态加载 -->
+      </div>
+    </section>
+
+    <!-- 教育经历 -->
+    <section class="about-section">
+      <h2 class="about-section-title">教育经历</h2>
+      <div class="timeline" id="educationTimeline">
+        <!-- 教育经历将通过 JS 动态加载 -->
+      </div>
+    </section>
+
+    <!-- 工作经历 -->
+    <section class="about-section">
+      <h2 class="about-section-title">工作经历</h2>
+      <div class="timeline" id="experienceTimeline">
+        <!-- 工作经历将通过 JS 动态加载 -->
+      </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section class="about-section">
+      <h2 class="about-section-title">联系方式</h2>
+      <div class="contact-list" id="contactList">
+        <!-- 联系方式将通过 JS 动态加载 -->
+      </div>
+    </section>
+  </main>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <div class="footer-social">
+      <a href="https://github.com/COOLFEATHER" target="_blank" title="GitHub">
+        <i class="ri-github-line"></i>
+      </a>
+      <a href="https://blog.csdn.net/" target="_blank" title="CSDN">
+        <i class="ri-baidu-line"></i>
+      </a>
+      <a href="mailto:thebestlxy@163.com" title="邮箱">
+        <i class="ri-mail-line"></i>
+      </a>
+    </div>
+    <p>&copy; 2002 OVERRAIN. 梦里不知身是客 🌙</p>
+    <p class="copyright">基于 WorkBuddy 辅助构建</p>
+  </footer>
+
+  <!-- 脚本 -->
+  <script src="js/main.js"></script>
+  <script src="js/about.js"></script>
+</body>
+</html>

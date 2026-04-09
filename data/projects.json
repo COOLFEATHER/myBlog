@@ -1,0 +1,26 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "OVERRAIN 博客",
+      "description": "基于 Node.js + Vanilla JS 开发的个人博客系统，支持 Markdown 文章、多级分类与标签体系",
+      "tech": ["Node.js", "Express", "Vanilla JS", "CSS3"],
+      "demo": "http://localhost:3000",
+      "repo": "https://github.com/yourname/overrain-blog",
+      "cover": "",
+      "status": "进行中",
+      "createTime": "2024-01-15"
+    },
+    {
+      "id": 2,
+      "name": "Vue Dashboard",
+      "description": "使用 Vue 3 + Element Plus 构建的数据可视化仪表盘，支持实时数据刷新与多维度图表展示",
+      "tech": ["Vue 3", "Element Plus", "ECharts", "Axios"],
+      "demo": "https://demo.example.com/dashboard",
+      "repo": "https://github.com/yourname/vue-dashboard",
+      "cover": "",
+      "status": "已完成",
+      "createTime": "2024-02-20"
+    }
+  ]
+}

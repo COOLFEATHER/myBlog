@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OVERRAIN - 文章详情">
+  <title>文章详情 - OVERRAIN</title>
+  
+  <!-- 样式 -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.min.css">
+  
+  <!-- Prism.js 代码高亮 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-docker.min.js"></script>
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">OVERRAIN</a>
+      
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">首页</a>
+        <a href="category.html">分类</a>
+        <a href="about.html">关于</a>
+      </div>
+      
+      <div class="nav-right">
+        <button class="theme-toggle" title="切换主题">🌙</button>
+        <button class="nav-toggle" id="navToggle">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 文章主体 -->
+  <main class="article-page">
+    <!-- 文章头部 -->
+    <header class="article-header" id="articleHeader">
+      <div class="loading">加载中...</div>
+    </header>
+
+    <!-- 文章内容区域 -->
+    <div id="articleContent">
+      <!-- 将通过 JS 动态加载 -->
+    </div>
+
+    <!-- 文章底部导航 -->
+    <nav class="article-nav" id="articleNav">
+      <!-- 将通过 JS 动态加载 -->
+    </nav>
+
+    <!-- 文章操作按钮 -->
+    <div class="article-actions" id="articleActions">
+      <!-- 将通过 JS 动态加载 -->
+    </div>
+
+    <!-- 留言区域 -->
+    <section class="comments-section" id="commentsSection">
+      <h2 class="comments-title">
+        <i class="ri-chat-3-line"></i> 留言区
+      </h2>
+      
+      <!-- 留言表单 -->
+      <form class="comment-form" id="commentForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nickname">昵称</label>
+            <input type="text" id="nickname" name="nickname" placeholder="请输入昵称（不超过10个字符）" maxlength="10" required>
+            <span class="form-error" style="display: none;"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">邮箱</label>
+            <input type="email" id="email" name="email" placeholder="请输入邮箱地址" required>
+            <span class="form-error" style="display: none;"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="content">留言内容</label>
+          <textarea id="content" name="content" placeholder="说点什么吧..." required></textarea>
+          <span class="form-error" style="display: none;"></span>
+        </div>
+        <button type="submit" class="submit-btn" id="submitComment">提交留言</button>
+      </form>
+      
+      <!-- 留言列表 -->
+      <div class="comments-list" id="commentsList">
+        <!-- 将通过 JS 动态加载 -->
+      </div>
+    </section>
+  </main>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <div class="footer-social">
+      <a href="https://github.com/yourname" target="_blank" title="GitHub">
+        <i class="ri-github-line"></i>
+      </a>
+      <a href="https://blog.csdn.net/yourname" target="_blank" title="CSDN">
+        <i class="ri-baidu-line"></i>
+      </a>
+      <a href="mailto:yourname@example.com" title="邮箱">
+        <i class="ri-mail-line"></i>
+      </a>
+    </div>
+    <p>&copy; 2024 OVERRAIN. 用热爱点燃技术的火花 🔥</p>
+    <p class="copyright">基于 vibe coding 风格构建</p>
+  </footer>
+
+  <!-- 脚本 -->
+  <script src="js/main.js"></script>
+  <script src="js/article.js"></script>
+</body>
+</html>

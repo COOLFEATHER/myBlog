@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OVERRAIN - 文章分类">
+  <title>分类 - OVERRAIN</title>
+  
+  <!-- 样式 -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.min.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">OVERRAIN</a>
+      
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">首页</a>
+        <a href="category.html" class="active">分类</a>
+        <a href="about.html">关于</a>
+      </div>
+      
+      <div class="nav-right">
+        <button class="theme-toggle" title="切换主题">🌙</button>
+        <button class="nav-toggle" id="navToggle">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 页面内容 -->
+  <main class="category-page">
+    <!-- 页面标题 -->
+    <header class="page-header">
+      <div class="breadcrumb">
+        <a href="index.html">首页</a>
+        <span>/</span>
+        <span>分类</span>
+      </div>
+      <h1 class="page-title">文章分类</h1>
+      <p class="page-count">点击分类查看文章</p>
+    </header>
+
+    <!-- 主内容区域 - 树形分类列表 -->
+    <div class="category-tree-container">
+      <div class="category-tree" id="categoryTree">
+        <!-- 分类树将通过 JS 动态加载 -->
+        <div class="article-skeleton"></div>
+        <div class="article-skeleton"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <div class="footer-social">
+      <a href="https://github.com/yourname" target="_blank" title="GitHub">
+        <i class="ri-github-line"></i>
+      </a>
+      <a href="https://blog.csdn.net/yourname" target="_blank" title="CSDN">
+        <i class="ri-baidu-line"></i>
+      </a>
+      <a href="mailto:yourname@example.com" title="邮箱">
+        <i class="ri-mail-line"></i>
+      </a>
+    </div>
+    <p>&copy; 2024 OVERRAIN. 用热爱点燃技术的火花 🔥</p>
+    <p class="copyright">基于 vibe coding 风格构建</p>
+  </footer>
+
+  <!-- 脚本 -->
+  <script src="js/main.js"></script>
+  <script src="js/category.js"></script>
+</body>
+</html>

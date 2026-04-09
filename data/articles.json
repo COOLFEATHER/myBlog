@@ -1,0 +1,154 @@
+{
+  "articles": [
+    {
+      "id": 9,
+      "title": "vibe coding 个人博客网站开发说明文档",
+      "summary": "OVERRAIN个人博客网站（以下简称“博客网站”） 基于 vibe coding 风格（极简、流畅、科技感、沉浸式，贴合编程开发者气质），开发一个响应式个人博客网站，用于展示个人技术文章、项目经验、...",
+      "content": "# 一、项目概述\n\n## 1\\.1 项目名称\n\nOVERRAIN个人博客网站（以下简称“博客网站”）\n\n## 1\\.2 项目核心目标\n\n基于 vibe coding 风格（极简、流畅、科技感、沉浸式，贴合编程开发者气质），开发一个响应式个人博客网站，用于展示个人技术文章、项目经验、学习笔记，同时具备简洁的交互体验、清晰的内容层级，支持文章管理、分类检索、访客互动等基础功能，适配PC端、平板、移动端等多种设备，整体风格统一、视觉舒适，突出“编码氛围感”与“个人特色”。\n\n## 1\\.3 目标用户\n\n1\\.  个人（博客主人）：用于发布、编辑、管理自己的技术文章、项目复盘、学习心得，打造个人技术品牌；\n\n2\\.  访客（技术爱好者、同行开发者）：浏览技术文章、学习经验、查看项目案例，可留言互动、收藏文章。\n\n## 1\\.4 开发优先级\n\n核心功能（必须实现）\\&gt; 交互体验 \\&gt; 视觉优化 \\&gt; 扩展功能（可选实现），优先保证网站流畅性、兼容性，再提升视觉和附加功能。\n\n# 二、vibe coding 风格要求（核心重点）\n\n贴合编程开发者的审美，拒绝冗余设计，突出内容本身，同时加入轻微的编码相关视觉元素，营造沉浸式浏览体验，具体要求如下：\n\n## 2\\.1 视觉风格\n\n- 配色：主色调采用深灰（\\#333333）、浅灰（\\#f5f5f5）、科技蓝（\\#165DFF），辅助色用浅青色（\\#40C4FF），禁用高饱和、花哨配色；背景以浅灰或纯白色为主，正文为深灰，强调色（链接、按钮、标题重点）用科技蓝，hover状态可切换为浅青色，整体色调统一、柔和，减轻视觉疲劳。\n\n- 字体：全局使用无衬线字体（优先 Inter、Roboto，兜底微软雅黑、宋体），标题字体加粗、清晰，正文字体适中（PC端14\\-16px，移动端12\\-14px），行高1\\.6\\-1\\.8，保证可读性；代码片段使用等宽字体（Consolas、Monaco），突出编码特色。\n\n- 布局：极简对称布局，留白充足，避免元素拥挤；页面层级清晰，标题、正文、侧边栏、底部区分明确，采用卡片式设计（轻微阴影，无圆角或小圆角），突出内容模块，减少不必要的装饰元素。\n\n- 视觉元素：可加入轻微的编码相关点缀（如页面加载时的代码滚动动画、文章标题前的小代码图标、侧边栏的代码符号装饰），但不夸张、不冗余；按钮、输入框采用极简设计，无复杂边框，hover时有轻微过渡效果（颜色变化、轻微缩放）。\n\n## 2\\.2 交互风格\n\n- 流畅性：页面加载、页面切换、按钮点击、文章滚动时，加入轻微过渡动画（0\\.3\\-0\\.5s），避免生硬跳转；滚动时可加入导航栏固定效果，提升浏览体验。\n\n- 编码氛围感：文章中的代码片段可实现语法高亮（支持常见语言：Python、JavaScript、HTML、CSS等），点击代码片段可复制；可加入“暗黑模式/亮色模式”切换，适配不同浏览场景（暗黑模式贴合编码深夜使用场景）。\n\n- 简洁交互：按钮、链接的交互反馈清晰（颜色变化、轻微阴影），无多余弹窗；表单提交、留言发送有简洁提示，不干扰浏览；文章阅读时，可实现“上一篇/下一篇”快速切换，侧边栏可固定（PC端），方便检索。\n\n# 三、技术栈要求\n\n## 3\\.1 前端技术栈\n\n- 基础框架：HTML5 \\+ CSS3 \\+ JavaScript（原生，无需使用Vue、React等框架，降低复杂度，贴合vibe coding极简理念）；\n\n- 样式工具：Tailwind CSS（用于快速实现响应式布局和vibe风格样式，减少自定义CSS冗余）；\n\n- 辅助工具：\n        \n\n    - Prism\\.js（用于文章代码片段语法高亮，适配多种编程语言）；\n\n    - Font Awesome（用于极简图标，如导航图标、文章标签图标、社交图标等，选择编码相关图标）；\n\n    - LocalStorage（用于存储访客偏好，如暗黑模式/亮色模式、已阅读文章记录等）。\n\n## 3\\.2 后端技术栈（简化，适配个人博客需求）\n\n采用“静态网站 \\+ 简易后端”模式，无需复杂数据库，优先保证简洁性和可维护性：\n\n- 后端语言：Node\\.js（Express框架），用于处理简单的接口请求（如留言提交、文章数据读取）；\n\n- 数据存储：使用JSON文件存储文章数据、留言数据（无需MySQL、MongoDB等数据库，简化开发和部署）；\n\n- 部署：支持静态部署（如GitHub Pages、Vercel），后端接口可部署在云函数（如阿里云函数计算、腾讯云函数），降低部署成本。\n\n## 3\\.3 兼容性要求\n\n- 浏览器：兼容Chrome、Edge、Firefox最新版本，兼容Safari 14\\+版本，无需兼容IE浏览器；\n\n- 设备：响应式适配PC端（屏幕宽度≥1200px）、平板（768px≤屏幕宽度\\&lt;1200px）、移动端（屏幕宽度\\&lt;768px），布局自动调整，无错乱、无内容溢出；\n\n- 性能：页面加载时间≤3s，代码片段渲染≤1s，无卡顿、无报错，图片加载有懒加载效果。\n\n# 四、页面结构与功能详细说明（核心模块）\n\n网站整体分为6个核心页面，每个页面的结构、功能、样式严格遵循vibe coding风格，详细说明如下，AI需严格按照此要求开发，不得遗漏核心功能。\n\n## 4\\.1 首页（index\\.html）\n\n### 4\\.1\\.1 页面结构\n\n- 顶部导航栏（固定，滚动时轻微缩小，适配所有设备）；\n\n- hero区域（极简，展示个人头像、昵称、一句话简介，背景轻微编码纹理，无多余装饰）；\n\n- 文章列表区域（核心，卡片式布局，展示最新文章，分页加载）；\n\n- 侧边栏（PC端固定在右侧，移动端隐藏，可通过图标呼出，展示分类、标签、热门文章）；\n\n- 底部区域（极简，展示版权信息、社交账号链接、备案信息）。\n\n### 4\\.1\\.2 核心功能\n\n- 导航栏：包含“首页、文章、项目、关于我、留言”5个导航项，hover时颜色切换为浅青色；移动端导航栏折叠为汉堡图标，点击呼出导航菜单（全屏半透明，极简样式）；导航栏右侧加入“暗黑/亮色模式”切换按钮（图标为代码相关，如🌙/☀️，点击切换，记住用户偏好）。\n\n- hero区域：个人头像（圆形，无边框，大小适中）、昵称（加粗，字体稍大）、简介（如“一名热爱编码的开发者，分享技术与成长”），可加入轻微的文字渐显动画，背景为浅灰或纯白色，可加入极淡的代码符号纹理（不干扰视觉）。\n\n- 文章列表：\n        \n\n    - 卡片样式：白色背景，轻微阴影，小圆角（5px）， padding适中，每个卡片包含“文章标题、发布时间、分类、标签、摘要、阅读量”；\n\n    - 标题：加粗，点击可跳转至文章详情页，hover时颜色变为科技蓝；\n\n    - 摘要：截取文章前100字，末尾加“\\.\\.\\.”，无多余格式；\n\n    - 分页：底部加入分页控件，显示当前页码、总页数，支持“上一页、下一页”点击，当前页码高亮（科技蓝）；\n\n    - 筛选：支持按“最新发布、最多阅读”筛选文章（筛选按钮极简，点击切换，有选中状态反馈）。\n\n- 侧边栏（PC端）：\n\n\n    - 分类模块：标题为“文章分类”，下方列出所有分类，点击分类可跳转至分类文章页，显示每个分类的文章数量；\n    \n    - 标签模块：标题为“热门标签”，标签以文字按钮形式展示，颜色为浅灰，hover时变为科技蓝，点击标签可跳转至标签文章页；\n    \n    - 热门文章：标题为“热门阅读”，列出阅读量前5的文章，只显示标题，点击可跳转至详情页；\n    \n    - 移动端：侧边栏通过汉堡图标呼出，全屏半透明背景，内容与PC端一致，点击空白处可关闭。\n\n- 底部：版权信息（如“© 2026 vibe coding\\. All rights reserved\\.”）、社交账号链接（GitHub、CSDN等，用极简图标展示，hover时颜色变化）、备案信息（可选，如“粤ICP备XXXX号”），居中对齐，字体偏小，颜色为浅灰。\n\n### 4\\.1\\.3 样式要求\n\n整体留白充足，hero区域与文章列表区域间距适中；文章卡片之间间距均匀，无拥挤感；导航栏固定时，不遮挡内容；移动端布局时，文章列表占满屏幕宽度，侧边栏呼出时不遮挡核心内容。\n\n## 4\\.2 文章详情页（article\\.html）\n\n### 4\\.2\\.1 页面结构\n\n- 顶部导航栏（与首页一致，固定）；\n\n- 文章头部（标题、发布时间、分类、标签、阅读量、作者）；\n\n- 文章内容区域（核心，支持Markdown格式渲染，代码片段高亮）；\n\n- 文章底部（上一篇/下一篇、点赞、收藏、分享）；\n\n- 留言区域；\n\n- 底部区域（与首页一致）。\n\n### 4\\.2\\.2 核心功能\n\n- 文章头部：\n        \n\n    - 标题：加粗，字体较大（PC端24px，移动端18px），居中对齐（PC端）、左对齐（移动端）；\n\n    - 元信息：发布时间、分类（点击可跳转至分类页）、标签（点击可跳转至标签页）、阅读量（自动统计，初始为0，每打开一次\\+1）、作者（个人昵称），用浅灰色字体，排列在标题下方，间距均匀；\n\n    - 可加入“返回首页”按钮（极简图标\\+文字，如“← 首页”），位于标题左侧。\n\n- 文章内容：\n        \n\n    - 支持Markdown格式渲染，包括标题（h1\\-h6）、段落、列表（有序/无序）、链接、图片、代码块、引用等；\n\n    - 图片：自适应页面宽度，加载时有懒加载效果，点击图片可放大查看（极简弹窗，无多余装饰，点击空白处关闭）；\n\n    - 代码块：使用Prism\\.js实现语法高亮，支持常见编程语言，代码块右上角加入“复制”按钮（hover时显示，点击复制后提示“复制成功”，简洁提示，3秒后自动消失）；代码块可横向滚动（适配长代码）；\n\n    - 段落：行高1\\.8，段落间距适中，避免过长段落，提升可读性；\n\n    - 目录（可选）：PC端右侧固定目录，对应文章标题，点击目录可快速跳转至对应段落；移动端目录隐藏，可通过顶部按钮呼出（极简样式）。\n\n- 文章底部：\n        \n\n    - 上一篇/下一篇：左右排列，显示文章标题（超出部分省略），无文章时显示“无”，点击可跳转；\n\n    - 点赞/收藏：图标为极简样式（如👍/⭐），点击后颜色变为科技蓝，记录用户操作（使用LocalStorage，刷新页面不丢失），显示当前点赞/收藏数量；\n\n    - 分享：支持分享至微信、QQ、GitHub、CSDN等平台，用极简图标展示，点击弹出分享链接（极简弹窗）。\n\n- 留言区域：\n\n\n    - 留言表单：包含“昵称、邮箱、留言内容”三个输入框，极简样式（无边框，底部下划线，focus时下划线变为科技蓝），提交按钮为科技蓝，hover时变为浅青色，点击提交后显示“留言成功，感谢互动！”提示；\n    \n    - 留言列表：展示所有留言，按提交时间倒序排列，每个留言包含“昵称、提交时间、留言内容”，样式极简，留言之间有轻微分隔线；\n    \n    - 限制：留言内容不能为空，邮箱格式需验证（不符合格式提示“请输入正确的邮箱地址”），昵称长度不超过10个字符。\n\n### 4\\.2\\.3 样式要求\n\n文章内容区域留白充足，背景为白色，正文为深灰色；代码块背景为浅灰色（\\#f5f5f5），边框左侧加科技蓝线条（区分代码块）；留言区域与文章内容区域有明显分隔（轻微分隔线），留言表单与留言列表间距适中；移动端适配时，文章内容占满屏幕宽度，目录呼出时不遮挡内容。\n\n## 4\\.3 文章分类页（category\\.html）\n\n### 4\\.3\\.1 页面结构\n\n- 顶部导航栏（与首页一致）；\n\n- 分类标题区域（显示当前分类名称、该分类下文章总数）；\n\n- 分类文章列表（与首页文章列表样式一致，只显示当前分类下的文章）；\n\n- 侧边栏（与首页一致）；\n\n- 底部区域（与首页一致）。\n\n### 4\\.3\\.2 核心功能\n\n- 分类标题：显示“分类：XXX”（XXX为当前分类名称），下方显示“共X篇文章”，字体居中（PC端）、左对齐（移动端），颜色为深灰色，标题下方加一条科技蓝短线（长度适中，突出标题）；\n\n- 文章列表：与首页文章列表样式、功能一致，只加载当前分类下的文章，支持分页、筛选（最新发布、最多阅读）；\n\n- 面包屑导航（可选）：加入面包屑导航（首页 \\&gt; 分类 \\&gt; 当前分类），点击可跳转至对应页面，样式极简，颜色为浅灰色，hover时变为科技蓝。\n\n## 4\\.4 标签文章页（tag\\.html）\n\n### 4\\.4\\.1 页面结构\n\n与分类页结构完全一致，仅标题区域不同。\n\n### 4\\.4\\.2 核心功能\n\n- 标签标题：显示“标签：XXX”（XXX为当前标签名称），下方显示“共X篇文章”，样式与分类标题一致；\n\n- 文章列表：只加载当前标签下的文章，样式、功能与首页文章列表一致，支持分页、筛选；\n\n- 面包屑导航（可选）：首页 \\&gt; 标签 \\&gt; 当前标签，样式与分类页一致。\n\n## 4\\.5 项目展示页（project\\.html）\n\n### 4\\.5\\.1 页面结构\n\n- 顶部导航栏（与首页一致）；\n\n- 页面标题（“我的项目”）；\n\n- 项目列表区域（卡片式布局，极简风格）；\n\n- 底部区域（与首页一致）。\n\n### 4\\.5\\.2 核心功能\n\n- 页面标题：居中（PC端）、左对齐（移动端），加粗，字体较大，下方加科技蓝短线，样式与分类页标题一致；\n\n- 项目卡片：\n        \n\n    - 样式：与文章卡片一致（白色背景、轻微阴影、小圆角），padding适中，卡片之间间距均匀；\n\n    - 内容：包含“项目名称（加粗，点击可跳转至项目链接，如GitHub地址）、项目简介（简洁明了，不超过150字）、技术栈（标签形式展示，如Python、JavaScript等）、项目状态（如“已完成”“开发中”，用不同颜色区分：已完成\\-科技蓝，开发中\\-浅青色）”；\n\n    - 交互：hover时卡片轻微上浮（过渡动画0\\.3s），项目名称颜色变为科技蓝；点击项目名称跳转至项目链接（新窗口打开）；\n\n    - 分页：项目数量较多时，加入分页控件，样式与首页一致。\n\n## 4\\.6 关于我页面（about\\.html）\n\n### 4\\.6\\.1 页面结构\n\n- 顶部导航栏（与首页一致）；\n\n- 页面标题（“关于我”）；\n\n- 个人介绍区域（头像、个人信息、技能栈）；\n\n- 个人经历区域（教育经历、工作经历，可选）；\n\n- 联系方式区域；\n\n- 底部区域（与首页一致）。\n\n### 4\\.6\\.2 核心功能\n\n- 页面标题：与项目页标题样式一致，居中（PC端）、左对齐（移动端）；\n\n- 个人介绍区域：\n        \n\n    - 头像：与首页hero区域一致，圆形，无边框；\n\n    - 个人信息：昵称、职业（如“前端开发者”“全栈开发者”）、一句话简介，字体清晰，间距适中；\n\n    - 技能栈：以标签形式展示，如“HTML5、CSS3、JavaScript、Node\\.js”等，标签样式与首页侧边栏标签一致，hover时颜色变化。\n\n- 个人经历区域（可选）：\n       \n\n    - 标题：“教育经历”“工作经历”，加粗，下方加浅灰色短线；\n\n    - 内容：按时间倒序排列，每个经历包含“时间、机构/公司、职位/专业、简介”，样式极简，无多余装饰，间距适中。\n\n- 联系方式区域：\n        \n\n    - 标题：“联系方式”，加粗，下方加浅灰色短线；\n\n    - 内容：展示社交账号（GitHub、CSDN、微信、邮箱等），用“图标\\+文字/链接”形式，图标为极简样式，文字颜色为深灰色，hover时变为科技蓝，点击链接可跳转（邮箱点击可唤起邮件客户端）。\n\n### 4\\.6\\.3 样式要求\n\n整体布局对称，留白充足，个人介绍、经历、联系方式区域之间有明显分隔（轻微分隔线）；技能栈标签排列均匀，不拥挤；移动端适配时，内容占满屏幕宽度，排版整齐，无错乱。\n\n# 五、数据结构说明（后端相关）\n\n采用JSON文件存储数据，无需复杂数据库，AI需创建以下JSON文件，规范数据格式，便于后续维护和扩展。\n\n## 5\\.1 文章数据（articles\\.json）\n\n```json\n{\n  \"articles\": [\n    {\n      \"id\": 1, // 唯一标识，自增\n      \"title\": \"vibe coding 风格博客开发教程\", // 文章标题\n      \"summary\": \"本文详细介绍如何使用HTML、CSS、JavaScript开发一个vibe coding风格的个人博客网站...\", // 文章摘要\n      \"content\": \"# 标题\\n## 二级标题\\n...\", // 文章内容（Markdown格式）\n      \"category\": \"前端开发\", // 文章分类\n      \"tags\": [\"HTML\", \"CSS\", \"JavaScript\"], // 文章标签（数组）\n      \"createTime\": \"2026-04-01\", // 发布时间（格式：YYYY-MM-DD）\n      \"readCount\": 120, // 阅读量\n      \"likeCount\": 20, // 点赞数\n      \"collectCount\": 15 // 收藏数\n    }\n  ]\n}\n```\n\n## 5\\.2 分类数据（categories\\.json）\n\n```json\n{\n  \"categories\": [\n    {\n      \"id\": 1, // 唯一标识，自增\n      \"name\": \"前端开发\", // 分类名称\n      \"articleCount\": 10 // 该分类下文章数量（自动统计）\n    }\n  ]\n}\n```\n\n## 5\\.3 标签数据（tags\\.json）\n\n```json\n{\n  \"tags\": [\n    {\n      \"id\": 1, // 唯一标识，自增\n      \"name\": \"HTML\", // 标签名称\n      \"articleCount\": 5 // 该标签下文章数量（自动统计）\n    }\n  ]\n}\n```\n\n## 5\\.4 项目数据（projects\\.json）\n\n```json\n{\n  \"projects\": [\n    {\n      \"id\": 1, // 唯一标识，自增\n      \"name\": \"vibe coding 个人博客\", // 项目名称\n      \"description\": \"基于HTML、CSS、JavaScript和Tailwind CSS开发的个人博客网站，极简风格，适配多设备...\", // 项目简介\n      \"techStack\": [\"HTML5\", \"CSS3\", \"JavaScript\", \"Tailwind CSS\"], // 技术栈（数组）\n      \"status\": \"已完成\", // 项目状态（已完成/开发中）\n      \"link\": \"https://github.com/xxx/xxx\", // 项目链接（如GitHub地址）\n      \"createTime\": \"2026-03-15\" // 项目创建时间\n    }\n  ]\n}\n```\n\n## 5\\.5 留言数据（messages\\.json）\n\n```json\n{\n  \"messages\": [\n    {\n      \"id\": 1, // 唯一标识，自增\n      \"nickname\": \"访客1\", // 留言者昵称\n      \"email\": \"xxx@163.com\", // 留言者邮箱\n      \"content\": \"博客风格很喜欢，内容也很实用！\", // 留言内容\n      \"createTime\": \"2026-04-02 15:30:00\" // 留言时间（格式：YYYY-MM-DD HH:MM:SS）\n    }\n  ]\n}\n```\n\n## 5\\.6 后端接口说明\n\nAI需开发以下简易接口，用于处理前端请求，接口采用RESTful风格，返回JSON格式数据：\n\n- 文章接口：\n        \n\n    - GET /api/articles：获取所有文章（支持分页、筛选）；\n\n    - GET /api/articles/:id：获取单篇文章详情；\n\n    - GET /api/articles/category/:categoryName：获取指定分类下的文章；\n\n    - GET /api/articles/tag/:tagName：获取指定标签下的文章；\n\n    - POST /api/articles/read/:id：更新文章阅读量（每调用一次，readCount\\+1）；\n\n    - POST /api/articles/like/:id：更新文章点赞数（每调用一次，likeCount\\+1）；\n\n    - POST /api/articles/collect/:id：更新文章收藏数（每调用一次，collectCount\\+1）。\n\n- 分类接口：\n\n    - GET /api/categories：获取所有分类及文章数量。\n\n- 标签接口：\n\n\n    - GET /api/tags：获取所有标签及文章数量。\n\n- 项目接口：\n       \n\n    - GET /api/projects：获取所有项目（支持分页）。\n\n- 留言接口：\n        \n\n    - GET /api/messages：获取所有留言；\n\n    - POST /api/messages：提交留言（验证昵称、邮箱、内容格式）。\n\n# 六、开发规范（AI必须遵循）\n\n## 6\\.1 代码规范\n\n- HTML：语义化标签，结构清晰，避免冗余标签；每个页面的HTML结构统一，头部引入相同的CSS、JS文件，meta标签完整（适配移动端、SEO）。\n\n- CSS：使用Tailwind CSS，减少自定义CSS；样式命名规范（采用BEM命名法），避免样式冲突；响应式布局使用Tailwind的响应式类，不自定义媒体查询（特殊情况除外）。\n\n- JavaScript：代码简洁，注释清晰（关键逻辑加注释）；避免全局变量污染，使用自执行函数包裹；接口请求使用fetch API，处理成功、失败、加载状态；动画效果使用原生CSS过渡，避免使用复杂JS动画。\n\n- 文件目录：结构清晰，便于维护，具体目录如下：\n        `blog/\n    ├── index\\.html（首页）\n    ├── article\\.html（文章详情页）\n    ├── category\\.html（分类页）\n    ├── tag\\.html（标签页）\n    ├── project\\.html（项目页）\n    ├── about\\.html（关于我页）\n    ├── css/\n    │   └── style\\.css（自定义CSS，补充Tailwind不足）\n    ├── js/\n    │   ├── main\\.js（全局JS，导航、模式切换等）\n    │   ├── article\\.js（文章详情页JS）\n    │   ├── category\\.js（分类页JS）\n    │   ├── tag\\.js（标签页JS）\n    │   ├── project\\.js（项目页JS）\n    │   ├── about\\.js（关于我页JS）\n    │   └── api\\.js（接口请求封装）\n    ├── data/\n    │   ├── articles\\.json（文章数据）\n    │   ├── categories\\.json（分类数据）\n    │   ├── tags\\.json（标签数据）\n    │   ├── projects\\.json（项目数据）\n    │   └── messages\\.json（留言数据）\n    ├── images/（图片资源，如头像、项目截图等）\n    ├── lib/（第三方库，如Prism\\.js、Font Awesome）\n    └── backend/（后端代码，Node\\.js \\+ Express）\n    ├── app\\.js（入口文件）\n    └── routes/（接口路由）`\n\n## 6\\.2 功能规范\n\n- 所有页面必须适配响应式，PC端、平板、移动端布局无错乱；\n\n- 接口请求必须处理异常（如网络错误、数据加载失败），显示简洁提示（如“数据加载失败，请刷新重试”）；\n\n- 代码片段高亮必须正常显示，复制功能可用；\n\n- 暗黑/亮色模式切换正常，记住用户偏好（LocalStorage存储）；\n\n- 留言表单验证正常，提交成功后有提示，留言列表实时更新；\n\n- 页面加载速度≤3s，图片懒加载正常，无卡顿、无报错。\n\n## 6\\.3 样式规范\n\n- 严格遵循vibe coding风格，不添加冗余装饰元素，配色、字体、布局统一；\n\n- 按钮、链接、输入框等交互元素，hover状态必须有反馈，过渡自然；\n\n- 页面留白充足，元素间距均匀，避免拥挤；\n\n- 所有卡片、按钮的圆角统一（5px），阴影统一（轻微阴影，不夸张）；\n\n- 文字颜色统一：标题深灰（\\#333333），正文深灰（\\#666666），辅助文字浅灰（\\#999999），强调色科技蓝（\\#165DFF），hover强调色浅青色（\\#40C4FF）。\n\n# 七、扩展功能（可选，优先完成核心功能后实现）\n\n- 搜索功能：在导航栏加入搜索框，支持搜索文章标题、内容、标签，搜索结果显示在单独页面（search\\.html），样式与分类页一致；\n- 文章归档：新增归档页面（archive\\.html），按月份归档文章，点击月份可查看该月份的所有文章；\n- 阅读进度：在文章详情页加入阅读进度条（顶部固定，随滚动进度变化），样式极简；\n- 后台管理页面：新增后台登录页（login\\.html）和管理页（admin\\.html），用于个人编辑、删除文章、管理留言、添加项目等（需简单密码验证，密码存储在后端配置文件中）。\n\n# 八、交付要求\n\n- 完整代码：包含所有页面、CSS、JS、后端代码、JSON数据文件，文件目录结构清晰，符合开发规范；\n\n- 测试报告：简单说明各页面、各功能的测试情况，确认无报错、无布局错乱、功能正常；\n\n- 部署说明：简单说明如何部署前端（静态部署）和后端（云函数部署），步骤清晰，便于个人操作；\n\n- 维护说明：说明如何添加文章、修改项目、管理留言（如修改JSON文件的方法），便于后续维护。\n\n# 九、注意事项\n\n- 严格遵循vibe coding风格，拒绝冗余设计、花哨配色，突出极简、科技感、实用性；\n\n- 优先保证核心功能实现，扩展功能可后续补充，不影响核心体验；\n\n- 代码简洁、注释清晰，便于后续个人维护和修改；\n\n- 所有交互效果轻微、自然，不夸张，避免影响浏览体验；\n\n- 适配多种设备，确保移动端浏览体验良好，无内容溢出、布局错乱；\n\n- 数据存储采用JSON文件，无需复杂数据库，简化部署和维护成本。\n",
+      "category": "前端开发",
+      "tags": [],
+      "cover": "",
+      "createTime": "2026-04-09",
+      "updateTime": "2026-04-09",
+      "readCount": 2,
+      "likeCount": 0,
+      "collectCount": 0
+    },
+    {
+      "id": 1,
+      "title": "深入理解 JavaScript 闭包",
+      "summary": "闭包是 JavaScript 中最强大的特性之一。本文将从执行上下文、作用域链的角度，深入剖析闭包的形成原理与实际应用场景。",
+      "content": "## 什么是闭包？\n\n闭包是指一个函数能够访问其词法作用域外部的变量。简单来说，就是函数嵌套函数，内部函数引用外部函数的变量。\n\n```javascript\nfunction outer() {\n  const a = 10;\n  function inner() {\n    console.log(a); // 内部函数访问了外部变量\n  }\n  return inner;\n}\n\nconst fn = outer();\nfn(); // 10\n```\n\n## 闭包的应用场景\n\n### 1. 数据私有化\n```javascript\nfunction counter() {\n  let count = 0;\n  return {\n    increment: () => ++count,\n    decrement: () => --count,\n    getCount: () => count\n  };\n}\n```\n\n### 2. 函数柯里化\n```javascript\nfunction currying(fn) {\n  return function(a) {\n    return function(b) {\n      return fn(a, b);\n    };\n  };\n}\n```\n\n## 闭包的内存问题\n\n闭包会导致内存泄漏，因为被闭包引用的变量无法被垃圾回收。在不需要时应及时释放引用。\n\n> 理解闭包，是深入 JavaScript 的必经之路。",
+      "category": "前端开发",
+      "tags": [
+        "JavaScript",
+        "TypeScript"
+      ],
+      "cover": "",
+      "createTime": "2024-03-01",
+      "updateTime": "2024-03-10",
+      "readCount": 129,
+      "likeCount": 45,
+      "collectCount": 23
+    },
+    {
+      "id": 2,
+      "title": "Vue 3 响应式原理深度解析",
+      "summary": "Vue 3 使用 Proxy 替代了 Object.defineProperty，带来了更强大、更高效的响应式系统。本文带你深入源码理解其核心原理。",
+      "content": "## 从 Object.defineProperty 到 Proxy\n\nVue 2 使用 `Object.defineProperty` 实现响应式，但存在缺陷：无法检测数组下标变化、需递归遍历、无法监听新增属性。\n\nVue 3 使用 ES6 Proxy 彻底解决了这些问题。\n\n```javascript\nconst reactive = (obj) => {\n  return new Proxy(obj, {\n    get(target, key) {\n      track(target, key);\n      return Reflect.get(target, key);\n    },\n    set(target, key, value) {\n      const result = Reflect.set(target, key, value);\n      trigger(target, key);\n      return result;\n    }\n  });\n};\n```\n\n## reactive 与 ref\n\n- `reactive`：深度响应式，适用于对象\n- `ref`：适用于基本类型，通过 `.value` 访问\n\n## 依赖追踪机制\n\nVue 3 使用 `targetMap` 存储依赖关系，实现精准更新。\n\n只有使用到的属性变化时，才会触发重新渲染。",
+      "category": "前端开发",
+      "tags": [
+        "Vue",
+        "JavaScript"
+      ],
+      "cover": "",
+      "createTime": "2024-03-05",
+      "updateTime": "2024-03-12",
+      "readCount": 256,
+      "likeCount": 78,
+      "collectCount": 41
+    },
+    {
+      "id": 3,
+      "title": "Node.js 文件上传实战：从零构建完整的文件处理系统",
+      "summary": "本文手把手教你使用 Node.js + Multer 构建企业级文件上传服务，支持大文件分片上传、断点续传和文件管理。",
+      "content": "## 项目初始化\n\n```bash\nnpm init -y\nnpm install express multer express-async-handler cors\n```\n\n## 基础文件上传\n\n```javascript\nconst multer = require('multer');\nconst upload = multer({ dest: 'uploads/' });\n\napp.post('/upload', upload.single('file'), (req, res) => {\n  res.json({ filename: req.file.filename });\n});\n```\n\n## 分片上传实现\n\n大文件上传采用分片策略：\n1. 前端将文件切分为固定大小的块\n2. 逐个上传每个分片\n3. 服务端记录分片信息\n4. 前端发送合并指令后，服务端按顺序合并\n\n## 安全注意事项\n\n- 限制文件类型和大小\n- 使用 `uuid` 重命名避免文件名冲突\n- 添加文件病毒扫描\n- 敏感目录禁止直接访问",
+      "category": "后端开发",
+      "tags": [
+        "Node.js",
+        "JavaScript"
+      ],
+      "cover": "",
+      "createTime": "2024-03-08",
+      "updateTime": "2024-03-08",
+      "readCount": 89,
+      "likeCount": 32,
+      "collectCount": 15
+    },
+    {
+      "id": 4,
+      "title": "Python 数据分析入门：用 Pandas 处理真实数据集",
+      "summary": "从安装配置到数据清洗、可视化，通过一个真实的数据分析案例，带你入门 Python 数据分析全流程。",
+      "content": "## 环境准备\n\n```bash\npip install pandas numpy matplotlib seaborn jupyter\n```\n\n## 数据加载与探索\n\n```python\nimport pandas as pd\n\ndf = pd.read_csv('data.csv')\nprint(df.head())\nprint(df.info())\nprint(df.describe())\n```\n\n## 数据清洗\n\n常见操作：\n- 缺失值处理：`df.fillna(0)` 或 `df.dropna()`\n- 类型转换：`df['date'] = pd.to_datetime(df['date'])`\n- 去重：`df.drop_duplicates()`\n- 异常值过滤\n\n## 数据可视化\n\n```python\nimport matplotlib.pyplot as plt\n\ndf.groupby('category')['sales'].sum().plot(kind='bar')\nplt.title('Sales by Category')\nplt.show()\n```\n\n## 实战案例\n\n对某电商平台 10 万条订单数据进行分析，发现退货率与客单价的负相关性，并给出优化建议。",
+      "category": "数据分析",
+      "tags": [
+        "Python"
+      ],
+      "cover": "",
+      "createTime": "2024-03-10",
+      "updateTime": "2024-03-15",
+      "readCount": 167,
+      "likeCount": 55,
+      "collectCount": 38
+    },
+    {
+      "id": 5,
+      "title": "Git 高级用法：让你的提交历史井井有条",
+      "summary": "rebase、cherry-pick、stash、reflog……这些高级命令让你的 Git 工作流更加高效和规范。",
+      "content": "## 交互式 Rebase 整理提交\n\n```bash\ngit rebase -i HEAD~3\n```\n\n可以在交互界面中：\n- `pick` 保留提交\n- `squash` 合并到上一个提交\n- `reword` 修改提交信息\n- `drop` 删除提交\n\n## Cherry-pick 精准选取\n\n将特定提交应用到当前分支：\n\n```bash\ngit cherry-pick <commit-hash>\n```\n\n## Stash 暂存修改\n\n```bash\ngit stash save \"工作进度\"\ngit stash list\ngit stash pop  # 恢复并删除\n```\n\n## Reflog 恢复误删\n\n```bash\ngit reflog\ngit checkout HEAD@{2}\n```\n\n## 最佳实践\n\n1. 保持提交原子化，一个提交做一件事\n2. 合理使用分支模型\n3. 提交信息要有意义\n4. 合并前先拉取最新代码",
+      "category": "开发工具",
+      "tags": [
+        "Git"
+      ],
+      "cover": "",
+      "createTime": "2024-03-12",
+      "updateTime": "2024-03-12",
+      "readCount": 203,
+      "likeCount": 67,
+      "collectCount": 29
+    },
+    {
+      "id": 6,
+      "title": "TypeScript 泛型完全指南：从入门到精通",
+      "summary": "泛型是 TypeScript 最强大的特性之一。本文覆盖泛型基础、约束、泛型工具类以及在实际项目中的最佳实践。",
+      "content": "## 为什么需要泛型？\n\n在没有泛型的情况下，函数参数和返回值类型只能写死，失去了类型检查的意义。\n\n```typescript\n// 没有泛型：类型丢失\nfunction identity(arg: any): any {\n  return arg;\n}\n\n// 使用泛型：保留类型信息\nfunction identity<T>(arg: T): T {\n  return arg;\n}\n\nconst result = identity<string>(\"hello\"); // result 被推断为 string\n```\n\n## 泛型约束\n\n限制泛型必须包含特定属性：\n\n```typescript\nfunction getProperty<T, K extends keyof T>(obj: T, key: K) {\n  return obj[key];\n}\n```\n\n## 内置泛型工具类型\n\n- `Partial<T>` — 所有属性变为可选\n- `Required<T>` — 所有属性变为必需\n- `Pick<T, K>` — 选取部分属性\n- `Omit<T, K>` — 排除部分属性\n- `Record<K, V>` — 构建键值对对象\n- `ReturnType<F>` — 获取函数返回值类型\n\n## 泛型类\n\n```typescript\nclass Stack<T> {\n  private items: T[] = [];\n  push(item: T) { this.items.push(item); }\n  pop(): T | undefined { return this.items.pop(); }\n}\n```",
+      "category": "前端开发",
+      "tags": [
+        "TypeScript",
+        "JavaScript"
+      ],
+      "cover": "",
+      "createTime": "2024-03-14",
+      "updateTime": "2024-03-14",
+      "readCount": 145,
+      "likeCount": 48,
+      "collectCount": 27
+    },
+    {
+      "id": 7,
+      "title": "Docker 容器化实战：从镜像构建到生产部署",
+      "summary": "手把手带你将 Node.js 应用容器化，编写 Dockerfile 和 docker-compose.yml，实现本地开发与生产环境无缝切换。",
+      "content": "## Dockerfile 基础\n\n```dockerfile\nFROM node:20-alpine\n\nWORKDIR /app\n\nCOPY package*.json ./\nRUN npm ci --only=production\n\nCOPY . .\n\nEXPOSE 3000\n\nCMD [\"node\", \"app.js\"]\n```\n\n## 多阶段构建优化体积\n\n```dockerfile\n# 构建阶段\nFROM node:20-alpine AS builder\nWORKDIR /app\nCOPY . .\nRUN npm ci\n\n# 运行阶段\nFROM node:20-alpine\nWORKDIR /app\nCOPY --from=builder /app/node_modules ./node_modules\nCOPY --from=builder /app/dist ./dist\nCMD [\"node\", \"dist/app.js\"]\n```\n\n## docker-compose.yml\n\n```yaml\nversion: '3.8'\nservices:\n  app:\n    build: .\n    ports:\n      - '3000:3000'\n    environment:\n      - NODE_ENV=production\n    restart: unless-stopped\n```\n\n## 常用命令\n\n```bash\ndocker build -t myapp .\ndocker run -d -p 3000:3000 myapp\ndocker-compose up -d\n```",
+      "category": "开发工具",
+      "tags": [
+        "Docker",
+        "Linux",
+        "Node.js"
+      ],
+      "cover": "",
+      "createTime": "2024-03-16",
+      "updateTime": "2024-03-16",
+      "readCount": 119,
+      "likeCount": 39,
+      "collectCount": 21
+    },
+    {
+      "id": 8,
+      "title": "React Hooks 最佳实践：构建可复用的业务组件",
+      "summary": "结合实际业务场景，分享 useState、useEffect、useCallback、useMemo、useRef 的最佳实践，以及如何设计自定义 Hook。",
+      "content": "## useState 最佳实践\n\n```javascript\n// 避免对象状态过度拆分\nconst [form, setForm] = useState({ name: '', email: '' });\n\n// 正确更新嵌套对象\nsetForm(prev => ({ ...prev, email: 'new@example.com' }));\n```\n\n## useEffect 清理函数\n\n```javascript\nuseEffect(() => {\n  const subscription = subscribe(id, handler);\n  return () => subscription.unsubscribe(); // 清理\n}, [id]);\n```\n\n## useCallback vs useMemo\n\n- `useCallback`：缓存函数引用，避免子组件不必要重渲染\n- `useMemo`：缓存计算结果，避免重复计算\n\n## 自定义 Hook 示例\n\n```javascript\nfunction useLocalStorage(key, initialValue) {\n  const [value, setValue] = useState(() => {\n    const stored = localStorage.getItem(key);\n    return stored ? JSON.parse(stored) : initialValue;\n  });\n\n  useEffect(() => {\n    localStorage.setItem(key, JSON.stringify(value));\n  }, [key, value]);\n\n  return [value, setValue];\n}\n```\n\n## 项目级 Hook 架构\n\n建议在 `src/hooks/` 目录下：\n- `useAsync.js` — 处理异步请求状态\n- `usePagination.js` — 分页逻辑\n- `useForm.js` — 表单处理",
+      "category": "前端开发",
+      "tags": [
+        "React",
+        "JavaScript",
+        "TypeScript"
+      ],
+      "cover": "",
+      "createTime": "2024-03-18",
+      "updateTime": "2024-03-20",
+      "readCount": 202,
+      "likeCount": 63,
+      "collectCount": 35
+    }
+  ]
+}
