@@ -633,66 +633,71 @@ console.log('Hello World');
       };
 
       // 检查是否有 frontmatter (--- ... ---)
-      const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
+      // 支持多种格式：---、---  \n、---\n
+      const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---/m;
+      const frontmatterMatch = content.match(frontmatterRegex);
       let mainContent = content;
 
       if (frontmatterMatch) {
         const frontmatter = frontmatterMatch[1];
-        mainContent = content.slice(frontmatterMatch[0].length).trim();
+        // 使用正则找到 frontmatter 结束位置，保留之后的所有内容
+        const frontmatterFullMatch = content.match(/^---[\s\S]*?---\n*/);
+        mainContent = content.slice(frontmatterFullMatch[0].length);
 
-        // 解析 frontmatter
-        frontmatter.split('\n').forEach(line => {
-          const colonIndex = line.indexOf(':');
-          if (colonIndex === -1) return;
-
-          const key = line.slice(0, colonIndex).trim().toLowerCase();
-          const value = line.slice(colonIndex + 1).trim();
-
-          switch (key) {
-            case 'title':
-              result.title = value.replace(/^["']|["']$/g, '');
-              break;
-            case 'category':
-            case 'categories':
-              result.category = value.replace(/^["']|["']$/g, '');
-              break;
-            case 'tags':
-              // 处理数组格式: [tag1, tag2] 或 - tag1\n- tag2
-              if (value.startsWith('[')) {
-                // JSON 数组格式
-                try {
-                  result.tags = JSON.parse(value.replace(/'/g, '"'));
-                } catch (e) {
-                  result.tags = value.replace(/[\[\]]/g, '').split(',').map(t => t.trim());
+        // 解析 frontmatter - 处理每行
+        const lines = frontmatter.split('\n');
+        let currentKey = '';
+        
+        lines.forEach(line => {
+          // YAML 多行值处理（以 | 或 > 开头）
+          if (line.match(/^\s{2,}\|/)) return;
+          
+          // 检查是否是键值对
+          const colonMatch = line.match(/^(\w+)(\s*:\s*)(.*)/);
+          if (colonMatch) {
+            const key = colonMatch[1].toLowerCase();
+            let value = colonMatch[3].trim();
+            
+            switch (key) {
+              case 'title':
+                result.title = value.replace(/^["']|["']$/g, '');
+                break;
+              case 'category':
+              case 'categories':
+                result.category = value.replace(/^["']|["']$/g, '');
+                break;
+              case 'tags':
+                if (value.startsWith('[')) {
+                  // JSON 数组格式: ["tag1", "tag2"]
+                  try {
+                    result.tags = JSON.parse(value.replace(/'/g, '"'));
+                  } catch (e) {
+                    result.tags = value.replace(/[\[\]]/g, '').split(',').map(t => t.trim().replace(/^["']|["']$/g, ''));
+                  }
+                } else if (value.startsWith('-')) {
+                  // 行内格式: - tag1, tag2
+                  result.tags = value.replace(/^-\s*/, '').split(',').map(t => t.trim());
                 }
-              } else {
-                // YAML 列表格式 - 已在下面处理
-              }
-              break;
-            case 'summary':
-              result.summary = value.replace(/^["']|["']$/g, '');
-              break;
+                break;
+              case 'summary':
+              case 'description':
+                result.summary = value.replace(/^["']|["']$/g, '');
+                break;
+            }
+          } else if (line.trim().startsWith('-') && frontmatter.includes('tags:')) {
+            // YAML 列表格式的 tags
+            const tag = line.replace(/^\s*-\s*/, '').trim().replace(/^["']|["']$/g, '');
+            if (tag) result.tags.push(tag);
           }
         });
-
-        // 处理 YAML 列表格式的 tags
-        if (result.tags.length === 0 && frontmatter.includes('tags:')) {
-          const tagsBlock = frontmatter.match(/tags:\n((?:\s*-\s*.+\n)*)/);
-          if (tagsBlock) {
-            result.tags = tagsBlock[1].split('\n')
-              .filter(line => line.trim().startsWith('-'))
-              .map(line => line.replace(/^\s*-\s*/, '').trim());
-          }
-        }
       }
 
       // 从正文提取标题（如果没有 frontmatter title）
       if (!result.title) {
+        // 匹配第一个 # 标题
         const h1Match = mainContent.match(/^#\s+(.+)$/m);
         if (h1Match) {
           result.title = h1Match[1].trim();
-          // 移除正文中的 # 标题
-          mainContent = mainContent.replace(/^#\s+.+\n+/, '');
         }
       }
 
@@ -713,8 +718,8 @@ console.log('Hello World');
         result.summary = plainText.slice(0, 100) + (plainText.length > 100 ? '...' : '');
       }
 
-      // 存储正文内容
-      result.content = mainContent;
+      // 存储正文内容 - 保留原始格式
+      result.content = mainContent.trim();
 
       return result;
     }

@@ -88,28 +88,85 @@
   function renderMarkdown(content) {
     if (!content) return '';
     
+    // 第一步：处理代码块（必须在所有其他转换之前）
     let html = content
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
-        return `<pre><code class="language-${lang || 'plaintext'}">${code.trim()}</code></pre>`;
-      })
-      .replace(/`([^`]+)`/g, '<code>$1</code>')
-      .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">')
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
-      .replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>')
-      .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-      .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-      .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.+?)\*/g, '<em>$1</em>')
-      .replace(/^- (.+)$/gm, '<li>$1</li>')
-      .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
-      .replace(/\n\n/g, '</p><p>')
-      .replace(/\n/g, '<br>');
+      .replace(/>/g, '&gt;');
     
-    return `<p>${html}</p>`;
+    // 代码块：支持 ```lang 和 ``` 两种格式
+    html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
+      const language = lang || 'plaintext';
+      return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
+    });
+    
+    // 行内代码
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    
+    // 图片
+    html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width:100%;">');
+    
+    // 链接
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+    
+    // 引用块
+    html = html.replace(/^&gt;\s+(.+)$/gm, '<blockquote>$1</blockquote>');
+    
+    // 合并相邻的引用块
+    html = html.replace(/(<blockquote>.*<\/blockquote>\n?)+/g, (match) => {
+      const quotes = match.match(/<blockquote>.*?<\/blockquote>/g) || [];
+      return '<blockquote>' + quotes.map(q => q.replace(/<\/?blockquote>/g, '')).join('<br>') + '</blockquote>';
+    });
+    
+    // 标题（处理可能的转义）
+    html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+    html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+    html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+    
+    // 粗体和斜体
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    html = html.replace(/__(.+?)__/g, '<strong>$1</strong>');
+    html = html.replace(/_(.+?)_/g, '<em>$1</em>');
+    
+    // 删除线
+    html = html.replace(/~~(.+?)~~/g, '<del>$1</del>');
+    
+    // 水平线
+    html = html.replace(/^---+$/gm, '<hr>');
+    html = html.replace(/^\*\*\*+$/gm, '<hr>');
+    
+    // 有序列表 - 支持 1. 2. 和 1) 2) 格式
+    html = html.replace(/^(\d+)[.)]\s+(.+)$/gm, '<li>$2</li>');
+    
+    // 无序列表
+    html = html.replace(/^[-*+]\s+(.+)$/gm, '<li>$1</li>');
+    
+    // 合并相邻的列表项为 ul
+    html = html.replace(/(<li>[\s\S]*?<\/li>\n*)+/g, (match) => {
+      return '<ul>' + match + '</ul>';
+    });
+    
+    // 段落处理：把多个换行转换为段落
+    // 先将连续换行转为特殊标记，再分组
+    html = html
+      .replace(/\n{3,}/g, '\n\n') // 超过2个换行改为2个
+      .replace(/\n\n/g, '\n\n'); // 保留双换行用于分段
+    
+    // 将非标签内容按段落分组
+    const parts = html.split(/\n\n+/);
+    html = parts.map(part => {
+      part = part.trim();
+      if (!part) return '';
+      // 如果已经是 HTML 标签，直接返回
+      if (part.startsWith('<') && part.endsWith('>')) {
+        return part;
+      }
+      // 普通段落
+      return `<p>${part.replace(/\n/g, '<br>')}</p>`;
+    }).join('\n');
+    
+    return html;
   }
 
   // ==================== 渲染函数 ====================
