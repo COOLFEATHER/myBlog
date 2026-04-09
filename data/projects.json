@@ -5,7 +5,7 @@
       "name": "OVERRAIN 博客",
       "description": "基于 Node.js + Vanilla JS 开发的个人博客系统，支持 Markdown 文章、多级分类与标签体系",
       "tech": ["Node.js", "Express", "Vanilla JS", "CSS3"],
-      "demo": "http://localhost:3000",
+      "demo": "https://myblog-qcy9.onrender.com",
       "repo": "https://github.com/yourname/overrain-blog",
       "cover": "",
       "status": "进行中",
